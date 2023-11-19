@@ -1,23 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useRef, useState } from 'react';
 import './App.css';
 
-function App() {
+const App = () => {
+  const csvFileRef = useRef<HTMLInputElement>(null);
+  const [feedback, setFeedback] = useState<string>('');
+
+  const postCsvFile = async () => {
+    if (csvFileRef.current === null || csvFileRef.current.files === null) return
+  
+    const formData = new FormData();
+    formData.append("csvFile", csvFileRef.current.files[0]);
+    const response = await fetch('/CsvUploader/User', { method: "POST", body: formData });
+    csvFileRef.current.value = ''
+    if (response.ok){
+      setFeedback('Success')
+    } else {
+      setFeedback('Failure')
+    }
+    setTimeout(() => setFeedback(''), 5000)
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {feedback && <p>{feedback}</p>}
+        <input type="file" id="csvFile" name="csvFile" accept=".csv" ref={csvFileRef}/> 
+        <button onClick={postCsvFile}>Post Csv</button>
       </header>
     </div>
   );
