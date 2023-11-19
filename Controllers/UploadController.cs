@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using CsvUploader.Converters;
+using ReactDotnetCsvUploader.Converters;
 
 
-namespace CsvUploader.Controllers;
+namespace ReactDotnetCsvUploader.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UploaderController : ControllerBase
+public class UploadController : ControllerBase
 {
     [HttpPost("User")]
     public IActionResult UploadUser(IFormFile csvFile)
@@ -17,13 +17,15 @@ public class UploaderController : ControllerBase
 
             foreach (var user in users) 
             {
+                Console.WriteLine("----- User ----");
                 Console.WriteLine(user.Email);
                 Console.WriteLine(user.FirstName);
                 Console.WriteLine(user.LastName);
             }
         }
-        catch
+        catch (Exception e)
         {
+            Console.WriteLine(e);
             return BadRequest();
         }
 

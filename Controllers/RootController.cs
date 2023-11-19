@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace CsvUploader.Controllers;
+namespace ReactDotnetCsvUploader.Controllers;
 
 [Route("")]
 public class RootController : ControllerBase

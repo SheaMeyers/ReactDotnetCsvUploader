@@ -10,13 +10,10 @@ const App = () => {
   
     const formData = new FormData();
     formData.append("csvFile", csvFileRef.current.files[0]);
-    const response = await fetch('/CsvUploader/User', { method: "POST", body: formData });
+    const response = await fetch('/Upload/User', { method: "POST", body: formData });
     csvFileRef.current.value = ''
-    if (response.ok){
-      setFeedback('Success')
-    } else {
-      setFeedback('Failure')
-    }
+    const feedbackMessage = response.ok ? 'Success' : 'Failure'
+    setFeedback(feedbackMessage)
     setTimeout(() => setFeedback(''), 5000)
   }
   
