@@ -1,6 +1,6 @@
 # React Dotnet CSV Uploader
 
-A demo application to demonstrate how to upload a csv file through a react app and read the file in a .net endpoint.
+A demo application to demonstrate how to upload and download a csv file through a react / .net application.
 
 ## Running
 
@@ -12,3 +12,5 @@ A demo application to demonstrate how to upload a csv file through a react app a
 
 When uploading a csv file you will see the entries of the file logged to the console.
 You can use the `TestCsv.csv` file to demonstrate.
+
+You can also download a static example csv
